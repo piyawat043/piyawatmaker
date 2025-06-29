@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ปิยวัฒน์ ทองจันทร์ | Maker Customs | iMak CNC</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #ffffff;
+      color: #333333;
+      padding: 40px;
+    }
+	
+
+	
+    h1, h2, h3 {
+      color: #003366;
+      margin-top: 30px;
+    }
+    p, li {
+      color: #333333;
+      font-size: 16px;
+    }
+    strong {
+      color: #003366;
+    }
+    blockquote {
+      border-left: 4px solid #003366;
+      padding-left: 20px;
+      color: #555555;
+      background-color: #f8f8f8;
+      margin: 20px 0;
+      font-style: italic;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    ul li {
+      margin-bottom: 10px;
+      border-bottom: 1px solid #dddddd;
+      padding-bottom: 8px;
+    }
+    .section {
+      max-width: 900px;
+      margin: auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #cccccc;
+    }
+    .audio-container {
+      background: #f5f5f5;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      box-shadow: 0 0 10px #cccccc;
+      max-width: 500px;
+    }
+    .audio-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .play-btn {
+      background: #003366;
+      color: #ffffff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.3s;
+    }
+    .play-btn:hover {
+      background: #0055aa;
+    }
+    .time {
+      font-size: 13px;
+      color: #333333;
+      min-width: 80px;
+    }
+    .progress {
+      width: 100%;
+      height: 6px;
+      background: #cccccc;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0;
+      background: #003366;
+      transition: width 0.2s;
+    }
+	
+		  .header-logos {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .header-logos img {
+      max-width: 250px;
+      margin: 10px;
+    }
+    .profile-photo {
+      display: block;
+      margin: 0 auto 40px auto;
+      border-radius: 10px;
+      max-width: 200px;
+      box-shadow: 0 0 15px #999999;
+	
+  </style>
+</head>
+<body>
+
+  <div class="header-logos">
+    <img src="./makercustomsos3.png" alt="Maker Customs Logo" />
+    <img src="./iMak4.png" alt="iMak Logo" />
+  </div>
+
+  <img src="./piyawat.png" alt="Piyawat Thongchan" class="profile-photo" />
+
+  <div class="section">
+    <h1>ปิยวัฒน์ ทองจันทร์ | Maker Customs</h1>
+    <p><strong>นักพัฒนาและผู้สร้างสรรค์ระบบ ไอแมค ซีเอ็นซี</strong></p>
+
+    <div class="audio-container">
+      <div class="audio-controls">
+        <button class="play-btn" id="playBtn">ฟังด้วยเสียง</button>
+        <span class="time" id="timeDisplay">0:00 / 0:00</span>
+		 <a href="https://piyawat043.github.io/MakerCustoms-CNC-OS/" target="_blank" class="btn">
+          กดเข้าปุ่มนี้ เพื่อเข้าสู่หน้าจำลองของจริง จากระบบ CNC
+        </a>
+      </div>
+      <div class="progress">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <audio id="audioPlayer" src="./piyawat.mp3"></audio>
+    </div>
+
+    <p>คุณปิยวัฒน์ ทองจันทร์ หรือที่รู้จักในนาม "Maker Customs" คือนักพัฒนาผู้สร้างสรรค์ระบบ CNC อัจฉริยะภายใต้ชื่อ <strong>ไอแมค ซีเอ็นซี</strong> ด้วยความเชื่อที่ว่าเครื่องมือที่ดีจะช่วยปลดล็อกศักยภาพของมนุษย์ให้ไปได้ไกลกว่าที่เคยคิด</p>
+
+    <h2>ผลงานและนวัตกรรม: ไอแมค ซีเอ็นซี</h2>
+    <p>ไอแมค ซีเอ็นซี คือระบบ CNC ที่ถูกพัฒนาขึ้นเพื่อลดความซับซ้อนและเปิดประตูให้ทุกคนเข้าถึงเทคโนโลยีการผลิตได้อย่างง่ายดาย โดยมีจุดเด่นสำคัญคือ:</p>
+
+    <ul>
+      <li><strong>ระบบกึ่งอัตโนมัติที่เน้นการทำงานร่วมกับมนุษย์:</strong> ระบบไม่ได้ถูกออกแบบให้เป็นอัตโนมัติเต็มรูปแบบ แต่เป็นระบบกึ่งอัตโนมัติที่จำเป็นต้องให้มนุษย์กดยืนยันในขั้นตอนสำคัญๆ เพื่อความปลอดภัย และเปิดโอกาสให้มนุษย์ได้มีส่วนร่วมในการสร้างสรรค์ผลงานอย่างเต็มที่
+        <ul>
+          <li>ใช้ <strong>ระบบกล้องนำทาง (Vision System)</strong> ในการทำงาน</li>
+          <li><strong>วัดชิ้นงานอัจฉริยะ:</strong> สามารถวัดพื้นผิว 6 จุดเพื่อวิเคราะห์และชดเชยการเอียงของชิ้นงาน พร้อมสร้าง G-code ให้อัตโนมัติ</li>
+          <li>ลดขั้นตอนยุ่งยากด้วยการหาค่าแกน Z, ชดเชยตำแหน่ง XY และวัดความยาวเครื่องมือแบบอัตโนมัติ</li>
+        </ul>
+      </li>
+      <li><strong>การควบคุมที่ยืดหยุ่น:</strong>
+        <ul>
+          <li>รองรับการสั่งการผ่าน <strong>จอยสติ๊กไร้สาย</strong> และ <strong>คำสั่งเสียง (Voice Command)</strong></li>
+          <li>โดดเด่นด้วย <strong>UI ที่ออกแบบให้ "คลิกแล้วเข้าใจ"</strong> มาพร้อมวิดีโอสอนการใช้งานในทุกปุ่มฟังก์ชัน</li>
+        </ul>
+      </li>
+      <li><strong>เทคโนโลยีเบื้องหลัง:</strong>
+        <ul>
+          <li>หัวใจหลักของระบบคือ <strong>Arduino Mega</strong> และ <strong>Estlcam</strong></li>
+          <li>ผสานการทำงานกับ <strong>AutoHotkey, HTML/CSS/JS</strong> เพื่อสร้างประสบการณ์ใช้งานที่ลื่นไหล</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h2>ปรัชญาและแรงบันดาลใจ</h2>
+    <ul>
+      <li><strong>“ผมยืนบนไหล่ของยักษ์”:</strong> แนวคิดหลักคือการนำความรู้ที่มีอยู่มาต่อยอดและพัฒนาให้ดียิ่งขึ้น และพร้อมที่จะเป็น "ยักษ์" ให้คนอื่นได้เหยียบยืนต่อไป</li>
+      <li><strong>“ความง่ายคือสุดยอดของความซับซ้อน”:</strong> มุ่งมั่นที่จะซ่อนความซับซ้อนของเทคโนโลยีไว้เบื้องหลัง เพื่อมอบประสบการณ์ที่เรียบง่ายที่สุดให้กับผู้ใช้งาน</li>
+      <li><strong>ภาวะตื่นรู้ (Awakening):</strong> โปรเจกต์ ไอแมค ซีเอ็นซี ไม่ได้เกิดจากการฝืนทำ แต่เกิดจากความเข้าใจอย่างลึกซึ้งว่านี่คือสิ่งที่ต้องสร้างขึ้น เพื่อส่งต่อประสบการณ์และช่วยให้ผู้ใช้ได้ค้นพบศักยภาพของตนเอง</li>
+    </ul>
+
+    <h2>วิสัยทัศน์สู่อนาคต</h2>
+    <ul>
+      <li><strong>กระดูกสันหลังของวงการผลิต:</strong> ตั้งเป้าให้ ไอแมค ซีเอ็นซี เป็นเครื่องมือพื้นฐานสำคัญสำหรับนวัตกรและผู้ผลิต</li>
+      <li><strong>เทคโนโลยี Plug & Play:</strong> ลดช่องว่างระหว่างผู้ใช้งานทั่วไปกับเทคโนโลยีระดับอุตสาหกรรม</li>
+      <li><strong>Soft Power ของไทย:</strong> ผลักดันเทคโนโลยีที่สร้างโดยคนไทยให้เป็นที่ยอมรับในเวทีโลก</li>
+    </ul>
+  </div>
+
+  <script>
+    const audio = document.getElementById('audioPlayer');
+    const playBtn = document.getElementById('playBtn');
+    const timeDisplay = document.getElementById('timeDisplay');
+    const progressBar = document.getElementById('progressBar');
+
+    function formatTime(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    audio.addEventListener('loadedmetadata', () => {
+      timeDisplay.textContent = `0:00 / ${formatTime(audio.duration)}`;
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      timeDisplay.textContent = `${formatTime(audio.currentTime)} / ${formatTime(audio.duration)}`;
+      const progressPercent = (audio.currentTime / audio.duration) * 100;
+      progressBar.style.width = progressPercent + "%";
+    });
+
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playBtn.textContent = "หยุดเสียง";
+      } else {
+        audio.pause();
+        playBtn.textContent = "ฟังด้วยเสียง";
+      }
+    });
+
+    audio.addEventListener('ended', () => {
+      playBtn.textContent = "ฟังด้วยเสียง";
+      progressBar.style.width = "0%";
+      timeDisplay.textContent = `0:00 / ${formatTime(audio.duration)}`;
+    });
+  </script>
+</body>
+</html>
