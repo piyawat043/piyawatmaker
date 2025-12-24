@@ -1,291 +1,327 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ปิยวัฒน์ ทองจันทร์ | Maker Customs | iMak CNC</title>
-  <style>
-    body {
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #ffffff;
-      color: #333333;
-      padding: 40px;
-    }
-	
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iMak Smart Probe OS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Sarabun:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'obsidian': '#0a0a0a',       // ดำสนิทขึ้น
+                        'panel': '#151518',          // สีพื้นแผงควบคุม
+                        'gold-dim': '#8a6d3b',       // ทองหม่น (Normal)
+                        'gold-bright': '#FFD700',    // ทองสว่าง (Active)
+                        'bronze': '#cd7f32',         // ทองแดง
+                        'tech-blue': '#3B82F6',      // สีฟ้าไฮเทค (Accent)
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Sarabun', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    boxShadow: {
+                        'glow-gold': '0 0 20px rgba(255, 215, 0, 0.15)',
+                        'glow-blue': '0 0 20px rgba(59, 130, 246, 0.2)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
 
-	
-    h1, h2, h3 {
-      color: #003366;
-      margin-top: 30px;
-    }
-    p, li {
-      color: #333333;
-      font-size: 16px;
-    }
-    strong {
-      color: #003366;
-    }
-    blockquote {
-      border-left: 4px solid #003366;
-      padding-left: 20px;
-      color: #555555;
-      background-color: #f8f8f8;
-      margin: 20px 0;
-      font-style: italic;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-    ul li {
-      margin-bottom: 10px;
-      border-bottom: 1px solid #dddddd;
-      padding-bottom: 8px;
-    }
-    .section {
-      max-width: 900px;
-      margin: auto;
-      background: #ffffff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px #cccccc;
-    }
-    .audio-container {
-      background: #f5f5f5;
-      padding: 20px;
-      border-radius: 8px;
-      margin-top: 20px;
-      box-shadow: 0 0 10px #cccccc;
-      max-width: 500px;
-    }
-    .audio-controls {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .play-btn {
-      background: #003366;
-      color: #ffffff;
-      border: none;
-      padding: 10px 16px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: background 0.3s;
-    }
-    .play-btn:hover {
-      background: #0055aa;
-    }
-    .time {
-      font-size: 13px;
-      color: #333333;
-      min-width: 80px;
-    }
-    .progress {
-      width: 100%;
-      height: 6px;
-      background: #cccccc;
-      border-radius: 3px;
-      overflow: hidden;
-      margin-top: 10px;
-    }
-    .progress-bar {
-      height: 100%;
-      width: 0;
-      background: #003366;
-      transition: width 0.2s;
-    }
-	
-		  .header-logos {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    .header-logos img {
-      max-width: 250px;
-      margin: 10px;
-    }
-    .profile-photo {
-      display: block;
-      margin: 0 auto 40px auto;
-      border-radius: 10px;
-      max-width: 200px;
-      box-shadow: 0 0 15px #999999;
-	
-  </style>
+        /* Tech Background Grid */
+        .bg-grid-pattern {
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* Image Filters for Theme Unification */
+        .img-industrial {
+            filter: grayscale(100%) contrast(110%) brightness(80%);
+            transition: all 0.4s ease;
+        }
+        /* เมื่อเอาเมาส์ชี้ ให้คืนสีเดิมนิดหน่อย + ใส่สีทอง */
+        .group:hover .img-industrial {
+            filter: grayscale(0%) contrast(100%) brightness(100%) sepia(20%);
+            transform: scale(1.05);
+        }
+
+        /* Active State (เมื่อกดเลือก) */
+        .btn-active .img-industrial {
+            filter: grayscale(0%) sepia(0%);
+        }
+        .btn-active {
+            border-color: #FFD700 !important;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
+        }
+    </style>
 </head>
-<body>
+<body class="bg-obsidian text-gray-200 font-sans h-screen flex overflow-hidden bg-grid-pattern selection:bg-gold-bright selection:text-black">
 
-  <div class="header-logos">
-    <img src="./makercustomsos3.png" alt="Maker Customs Logo" />
-    <img src="./iMak4.png" alt="iMak Logo" />
-  </div>
+    <aside class="w-24 bg-panel border-r border-white/5 flex flex-col items-center py-6 z-20 shadow-2xl">
+        <div class="mb-10 w-12 h-12 bg-gradient-to-br from-gold-dim to-transparent rounded flex items-center justify-center font-bold text-obsidian border border-gold-dim text-xl shadow-glow-gold">
+            iM
+        </div>
 
-  <img src="./piyawat.png" alt="Piyawat Thongchan" class="profile-photo" />
+        <nav class="flex-1 space-y-8 w-full flex flex-col items-center">
+            
+            <button onclick="switchTab('measure')" id="nav-measure" class="nav-item active group relative w-16 h-16 rounded-xl flex items-center justify-center transition-all bg-white/5 text-gold-bright border border-gold-dim/50 shadow-glow-gold">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+                <span class="absolute right-0 top-0 w-1.5 h-1.5 bg-gold-bright rounded-full animate-pulse"></span>
+            </button>
+            
+            <button onclick="switchTab('setup')" id="nav-setup" class="nav-item group relative w-16 h-16 rounded-xl flex items-center justify-center transition-all hover:bg-white/5 text-gray-500 hover:text-white border border-transparent hover:border-white/10">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+            </button>
 
-  <div class="section">
-    <h1>ปิยวัฒน์ ทองจันทร์ | Maker Customs</h1>
-    <p><strong>นักพัฒนาและผู้สร้างสรรค์ระบบ ไอแมค ซีเอ็นซี</strong></p>
+             <button onclick="switchTab('tools')" id="nav-tools" class="nav-item group relative w-16 h-16 rounded-xl flex items-center justify-center transition-all hover:bg-white/5 text-gray-500 hover:text-white border border-transparent hover:border-white/10">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+            </button>
 
-    <div class="audio-container">
-      <div class="audio-controls">
-        <button class="play-btn" id="playBtn">ฟังด้วยเสียง</button>
-        <span class="time" id="timeDisplay">0:00 / 0:00</span>
-		 <a href="https://piyawat043.github.io/MakerCustoms-CNC-OS/" target="_blank" class="btn">
-          กดเข้าปุ่มนี้ เพื่อเข้าสู่หน้าจำลองของจริง จากระบบ CNC
-        </a>
-      </div>
-      <div class="progress">
-        <div class="progress-bar" id="progressBar"></div>
-      </div>
-      <audio id="audioPlayer" src="./piyawat.mp3"></audio>
-    </div>
+        </nav>
+        
+        <div class="mb-4">
+             <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]"></div>
+        </div>
+    </aside>
 
-      <h2>บทบาทและผลงานสำคัญ</h2>
-	  <h2>คิดค้น"กระบวนการออกแบบเพื่อการทำซ้ำอย่างสมบูรณ์" ทำให้ cnc ไร้ขีดจำกัด</h2>
-    <h3>ผู้พัฒนาระบบ iMak (CNC)</h3>
-    <ul>
-      <li>ระบบ CNC อัจฉริยะ พัฒนาขึ้นเอง</li>
-      <li>แนวคิด “ยืนบนไหล่ของยักษ์” → นำความรู้เดิมมาต่อยอด</li>
- <h2>จุดเด่นของ iMak (CNC)</h2>
-    <ul>
-      <li>One-Click Tool Measuring</li>
-      <li>วัดผิวโค้ง, วัด 6 จุด, วัดวงกลม</li>
-      <li>Semi-Auto Probe</li>
-      <li>ระบบสอนตัวเองด้วยวิดีโอ</li>
-      <li>ระบบสอบเทียบกึ่งอัตโนมัติ</li>
-      <li>คลิกเพื่อดูวีดีโอ Ctrl+click เพื่อใช้งานระบบอัตโนมัติ</li>
-      <li>ตั้งชิ้นงานใน 1 วินาที วัดงานใน 3 นาที</li>
-        <ul>
-          <li>ใช้ระบบกล้องนำทางกล้อง webcam ทั่วไป (Vision System)</li>
-          <li>นำความสามารแต่ล่ะอย่างมารวมกัน</li>
-          <li>กึ่งอัตโนมัติให้คนมีส่วนร่วมในการตัดสินใจ</li>
-           <ul>
-              <li>หาค่าแกน Z</li>
-              <li>ชดเชยตำแหน่ง XY</li>
-              <li>วัดความยาวเครื่องมือ</li>
-            </ul>
-          </li>
-          <li>ควบคุมผ่านจอยสติ๊กไร้สาย และคำสั่งเสียง</li>
-          <li>UI ใช้งานง่าย มีวิดีโอแนะนำทุกปุ่ม</li>
-          <li>พัฒนาระบบ Vacuum Clamping ตัดเจาะทะลุได้และใช้อุปกรที่ประหยัดสุดๆ</li>
-        </ul>
-      </li>
-    </ul>
+    <main class="flex-1 flex flex-col relative">
+        
+        <header class="h-20 flex justify-between items-center px-10 border-b border-white/5 bg-obsidian/80 backdrop-blur-md">
+            <div>
+                <h2 id="page-title" class="text-3xl font-light text-white tracking-wider">MEASURE <span class="font-bold text-gold-dim">CYCLE</span></h2>
+                <p class="text-xs text-gray-500 font-mono mt-1">SELECT PROBING MODE</p>
+            </div>
+            
+            <div class="flex items-center gap-6">
+                 <div id="ctrl-indicator" class="hidden px-4 py-1 rounded bg-gold-dim/20 border border-gold-dim text-gold-bright text-xs font-mono font-bold animate-pulse">
+                    ARMED (CTRL)
+                </div>
+            </div>
+        </header>
 
-    <h2>ปรัชญาการทำงาน</h2>
-    <blockquote>
-      “ผมเชื่อในความสามารถของมนุษย์ครับ<br>
-      สิ่งที่ทำให้ผมมาถึงจุดนี้ได้…<br>
-      เพราะผม… ‘ยืนบนไหล่ของยักษ์’<br>
-      พวกยักษ์…ผลักดันผมให้สร้างเครื่องมือนี้ขึ้นมา<br>
-      เพราะถ้ามนุษย์มีเครื่องมือที่ดี…<br>
-      พวกเขาจะไปได้ไกล…<br>
-      ไกลกว่าที่ตัวเองเคยคิดไว้ด้วยซ้ำ<br>
-      ผมยินดีให้คุณ… ‘ยืนบนไหล่ของผม’<br>
-      ด้วยเครื่องมือนี้… มันจะปลดล็อกศักยภาพ<br>
-      และผลักดันคุณ…ให้ก้าวไปไกลกว่าเดิม”
-    </blockquote>
+        <div class="flex-1 p-10 overflow-y-auto">
 
-    <h2>ความเชื่อส่วนตัว</h2>
-    <blockquote>
-      “เรื่องธุรกิจผมเข้าใจดี<br>
-      แต่ผมเชื่อบางอย่างที่ไม่สามารถวัดได้ด้วยอุปกรณ์อะไรเลย<br>
-      มันคือความรู้สึกภายในที่อธิบายไม่ได้ เป็นของเฉพาะจริง ๆ<br>
-      สิ่งนั้นแหละที่มันอยู่เหนือทุกอย่าง<br>
-      ถ้าเราสร้างบางอย่างที่ไม่สามารถวัดตัวเลขหรือมูลค่าได้เลย<br>
-      และสิ่งที่ผมทำ iMak เป็นเครื่องมือที่ผลักดันผม<br>
-      ให้เห็นความสามารถทุกด้านของตัวเอง<br>
-      มันอาจจะมีเครื่องมืออื่น ๆ ที่ดีแบบนี้แต่ยังค้นหาไม่พบ<br>
-      และผมเชื่อว่ายังมีคนบางกลุ่มที่คิดแบบผม<br>
-      มองข้ามเรื่องเงิน แต่มองมันด้วยหัวใจ”
-    </blockquote>
+            <div id="content-measure" class="section-content grid grid-cols-3 gap-8 h-full">
+                
+                <button onclick="selectFunction('corner_out', event)" class="group relative rounded-2xl border border-white/10 bg-panel overflow-hidden transition-all duration-300 hover:border-gold-dim hover:shadow-glow-gold">
+                    <div class="absolute inset-0">
+                        <img src="image_52d963.jpg" class="w-full h-full object-cover img-industrial opacity-60 group-hover:opacity-100" style="object-position: 20% 50%;"> </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                    
+                    <div class="absolute bottom-0 left-0 w-full p-6">
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <span class="inline-block px-2 py-1 mb-2 text-[10px] font-bold bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded">OUTER</span>
+                                <h3 class="text-2xl font-bold text-white group-hover:text-gold-bright transition-colors">Corner</h3>
+                            </div>
+                            <div class="w-12 h-12 border border-white/20 rounded bg-black/50 flex items-center justify-center backdrop-blur-sm group-hover:border-gold-dim group-hover:text-gold-bright">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h6v6H4z"></path><path d="M10 10l4 4"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+                </button>
 
-    <h2>วิสัยทัศน์</h2>
-    <ul>
-      <li>ทำให้ iMak (CNC) เป็น “กระดูกสันหลัง” ของวงการผลิตและนวัตกรรม</li>
-      <li>มองว่าระบบ Plug & Play คือการลดช่องว่างระหว่างคนธรรมดากับอุตสาหกรรม</li>
-      <li>ผลักดันเทคโนโลยีไทยให้กลายเป็น Soft Power บนเวทีโลก</li>
-    </ul>
+                <button onclick="selectFunction('corner_in', event)" class="group relative rounded-2xl border border-white/10 bg-panel overflow-hidden transition-all duration-300 hover:border-gold-dim hover:shadow-glow-gold">
+                    <div class="absolute inset-0">
+                        <img src="image_52d963.jpg" class="w-full h-full object-cover img-industrial opacity-60 group-hover:opacity-100" style="object-position: 60% 60%; transform: scale(1.5);">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                    
+                    <div class="absolute bottom-0 left-0 w-full p-6">
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <span class="inline-block px-2 py-1 mb-2 text-[10px] font-bold bg-orange-500/20 text-orange-400 border border-orange-500/30 rounded">INNER</span>
+                                <h3 class="text-2xl font-bold text-white group-hover:text-gold-bright transition-colors">Corner</h3>
+                            </div>
+                            <div class="w-12 h-12 border border-white/20 rounded bg-black/50 flex items-center justify-center backdrop-blur-sm group-hover:border-gold-dim group-hover:text-gold-bright">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 20h-6v-6h6z"></path><path d="M14 14l-4-4"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+                </button>
 
-    <h2>รูปแบบการพัฒนา</h2>
-    <ul>
-      <li>Low-Cost Innovation: ใช้ทรัพยากรที่หาได้ เช่น กล้อง อุปกรณ์ต่างๆ ชิ้นส่วนเหลือใช้ เพื่อมาสร้างต้นแบบ</li>
-      <li>เน้นระบบที่ใช้งานจริงได้</li>
-      <li>ทดสอบและพัฒนาเองทั้งหมด</li>
-      <li>UX/UI ที่ทำให้ผู้ใช้เข้าใจง่าย</li>
-    </ul>
+                <button onclick="selectFunction('circle_out', event)" class="group relative rounded-2xl border border-white/10 bg-panel overflow-hidden transition-all duration-300 hover:border-gold-dim hover:shadow-glow-gold">
+                    <div class="absolute inset-0">
+                        <img src="image_52dd48.png" class="w-full h-full object-cover img-industrial opacity-60 group-hover:opacity-100">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                    
+                    <div class="absolute bottom-0 left-0 w-full p-6">
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <span class="inline-block px-2 py-1 mb-2 text-[10px] font-bold bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded">OUTER</span>
+                                <h3 class="text-2xl font-bold text-white group-hover:text-gold-bright transition-colors">Boss / Cylinder</h3>
+                            </div>
+                            <div class="w-12 h-12 border border-white/20 rounded bg-black/50 flex items-center justify-center backdrop-blur-sm group-hover:border-gold-dim group-hover:text-gold-bright">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="2"></circle></svg>
+                            </div>
+                        </div>
+                    </div>
+                </button>
 
-    <h2>เทคโนโลยีที่ใช้</h2>
-    <ul>
-      <li>Estlcam (CAM + Controller)</li>
-      <li>Arduino Mega</li>
-      <li>Vision System</li>
-      <li>Wireless Joystick</li>
-      <li>Vacuum Clamping</li>
-      <li>AutoHotkey (AHK)</li>
-      <li>HTML / CSS / JS</li>
-      <li>Voice Recognition</li>
-    </ul>
+                <button onclick="selectFunction('circle_in', event)" class="group relative rounded-2xl border border-white/10 bg-panel overflow-hidden transition-all duration-300 hover:border-gold-dim hover:shadow-glow-gold">
+                    <div class="absolute inset-0">
+                         <img src="image_52dd25.jpg" class="w-full h-full object-cover img-industrial opacity-60 group-hover:opacity-100" style="object-position: center;">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                    
+                    <div class="absolute bottom-0 left-0 w-full p-6">
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <span class="inline-block px-2 py-1 mb-2 text-[10px] font-bold bg-orange-500/20 text-orange-400 border border-orange-500/30 rounded">INNER</span>
+                                <h3 class="text-2xl font-bold text-white group-hover:text-gold-bright transition-colors">Bore / Hole</h3>
+                            </div>
+                             <div class="w-12 h-12 border border-white/20 rounded bg-black/50 flex items-center justify-center backdrop-blur-sm group-hover:border-gold-dim group-hover:text-gold-bright">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" stroke-width="2"></circle><path d="M12 2v4M12 18v4M2 12h4M18 12h4"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+                </button>
 
-    <h2>แรงบันดาลใจ</h2>
-    <ul>
-      <li>ระบบ iMak เกิดจาก “ภาวะตื่นรู้” (Awakening)</li>
-      <li>ไม่ได้สร้างเพราะฝืน แต่เพราะรู้ว่านี่คือสิ่งที่ต้องทำ</li>
-      <li>อยากให้ผู้ใช้ได้สัมผัสภาวะเดียวกันผ่านการใช้งานเครื่อง</li>
-    </ul>
+                <button onclick="selectFunction('surface_z', event)" class="group relative rounded-2xl border border-white/10 bg-panel overflow-hidden transition-all duration-300 hover:border-gold-dim hover:shadow-glow-gold">
+                    <div class="absolute inset-0">
+                        <img src="image_52d9a3.jpg" class="w-full h-full object-cover img-industrial opacity-60 group-hover:opacity-100" style="object-position: top right;">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                    
+                    <div class="absolute bottom-0 left-0 w-full p-6">
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <span class="inline-block px-2 py-1 mb-2 text-[10px] font-bold bg-purple-500/20 text-purple-400 border border-purple-500/30 rounded">Z-AXIS</span>
+                                <h3 class="text-2xl font-bold text-white group-hover:text-gold-bright transition-colors">Surface Z</h3>
+                            </div>
+                             <div class="w-12 h-12 border border-white/20 rounded bg-black/50 flex items-center justify-center backdrop-blur-sm group-hover:border-gold-dim group-hover:text-gold-bright">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+                </button>
 
-    <h2>แนวคิดสำคัญ</h2>
-    <ul>
-      <li>“ทุกสิ่งเกิดมาด้วยจุดประสงค์ของมัน ไม่สามารถเปรียบเทียบกันได้โดยตรง”</li>
-      <li>ระบบที่ดีควรพูดแทนตัวเองผ่านผลงาน</li>
-      <li>เชื่อว่าความง่าย คือสุดยอดของความซับซ้อน</li>
-    </ul>
+                <button onclick="selectFunction('angle', event)" class="group relative rounded-2xl border border-white/10 bg-panel overflow-hidden transition-all duration-300 hover:border-gold-dim hover:shadow-glow-gold">
+                    <div class="absolute inset-0">
+                        <img src="image_5367ca.png" class="w-full h-full object-cover img-industrial opacity-60 group-hover:opacity-100" style="object-position: center;">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                    
+                    <div class="absolute bottom-0 left-0 w-full p-6">
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <span class="inline-block px-2 py-1 mb-2 text-[10px] font-bold bg-teal-500/20 text-teal-400 border border-teal-500/30 rounded">SPECIAL</span>
+                                <h3 class="text-2xl font-bold text-white group-hover:text-gold-bright transition-colors">Angle / Web</h3>
+                            </div>
+                             <div class="w-12 h-12 border border-white/20 rounded bg-black/50 flex items-center justify-center backdrop-blur-sm group-hover:border-gold-dim group-hover:text-gold-bright">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+                </button>
 
-    <h2>ผลงานด้านสื่อสาร</h2>
-    <ul>
-      <li>ผลิตคอนเทนต์สั้น วิดีโอสาธิตระบบ iMak</li>
-      <li>ใช้สไตล์เล่าเรื่องตรงไปตรงมา แฝงมุมมองปรัชญา</li>
-      <li>พัฒนา UI ที่ผู้ใช้ “คลิกแล้วเข้าใจทันที”</li>
-      <li>กำลังพัฒนาระบบผู้ช่วยอัจฉริยะ Jarvis 3 เวอร์ชัน</li>
-    </ul>
+            </div>
 
-  <script>
-    const audio = document.getElementById('audioPlayer');
-    const playBtn = document.getElementById('playBtn');
-    const timeDisplay = document.getElementById('timeDisplay');
-    const progressBar = document.getElementById('progressBar');
+            <div id="content-setup" class="section-content hidden h-full">
+                 <div class="flex flex-col items-center justify-center h-full text-center">
+                    <div class="p-8 border border-white/10 rounded-2xl bg-panel max-w-2xl">
+                        <h3 class="text-2xl font-bold text-white mb-6">System Calibration</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <button onclick="ahk.zsetup(event)" class="p-6 bg-white/5 hover:bg-gold-dim hover:text-black border border-white/10 rounded-xl transition flex flex-col items-center">
+                                <span class="text-3xl mb-2">📐</span>
+                                <span>Probe Calibration</span>
+                            </button>
+                            <button onclick="ahk.camerasetup(event)" class="p-6 bg-white/5 hover:bg-gold-dim hover:text-black border border-white/10 rounded-xl transition flex flex-col items-center">
+                                <span class="text-3xl mb-2">📷</span>
+                                <span>Camera Offset</span>
+                            </button>
+                            <button onclick="ahk.toolsetup(event)" class="p-6 bg-white/5 hover:bg-gold-dim hover:text-black border border-white/10 rounded-xl transition flex flex-col items-center">
+                                <span class="text-3xl mb-2">📏</span>
+                                <span>Tool Setter</span>
+                            </button>
+                             <button onclick="ahk.parameter(event)" class="p-6 bg-white/5 hover:bg-gold-dim hover:text-black border border-white/10 rounded-xl transition flex flex-col items-center">
+                                <span class="text-3xl mb-2">⚙️</span>
+                                <span>Parameters</span>
+                            </button>
+                        </div>
+                    </div>
+                 </div>
+            </div>
 
-    function formatTime(seconds) {
-      const mins = Math.floor(seconds / 60);
-      const secs = Math.floor(seconds % 60);
-      return `${mins}:${secs.toString().padStart(2, '0')}`;
-    }
+            <div id="content-tools" class="section-content hidden h-full flex items-center justify-center">
+                <p class="text-gray-600 font-mono">TOOL LIBRARY / PLACEHOLDER</p>
+            </div>
 
-    audio.addEventListener('loadedmetadata', () => {
-      timeDisplay.textContent = `0:00 / ${formatTime(audio.duration)}`;
-    });
+        </div>
+    </main>
 
-    audio.addEventListener('timeupdate', () => {
-      timeDisplay.textContent = `${formatTime(audio.currentTime)} / ${formatTime(audio.duration)}`;
-      const progressPercent = (audio.currentTime / audio.duration) * 100;
-      progressBar.style.width = progressPercent + "%";
-    });
+    <script>
+        // --- Navigation Logic ---
+        function switchTab(tabId) {
+            // Hide all contents
+            document.querySelectorAll('.section-content').forEach(el => el.classList.add('hidden'));
+            
+            // Remove active styles from nav
+            document.querySelectorAll('.nav-item').forEach(el => {
+                el.classList.remove('active', 'bg-white/5', 'text-gold-bright', 'border-gold-dim/50', 'shadow-glow-gold');
+                el.classList.add('text-gray-500', 'border-transparent');
+                el.querySelector('.absolute')?.remove(); // Remove active dot
+            });
 
-    playBtn.addEventListener('click', () => {
-      if (audio.paused) {
-        audio.play();
-        playBtn.textContent = "หยุดเสียง";
-      } else {
-        audio.pause();
-        playBtn.textContent = "ฟังด้วยเสียง";
-      }
-    });
+            // Activate content
+            document.getElementById('content-' + tabId).classList.remove('hidden');
+            
+            // Activate Nav Button
+            const activeBtn = document.getElementById('nav-' + tabId);
+            activeBtn.classList.remove('text-gray-500', 'border-transparent');
+            activeBtn.classList.add('active', 'bg-white/5', 'text-gold-bright', 'border-gold-dim/50', 'shadow-glow-gold');
+            
+            // Add Active Dot
+            const dot = document.createElement('span');
+            dot.className = 'absolute right-0 top-0 w-1.5 h-1.5 bg-gold-bright rounded-full animate-pulse';
+            activeBtn.appendChild(dot);
+        }
 
-    audio.addEventListener('ended', () => {
-      playBtn.textContent = "ฟังด้วยเสียง";
-      progressBar.style.width = "0%";
-      timeDisplay.textContent = `0:00 / ${formatTime(audio.duration)}`;
-    });
-  </script>
+        // --- Function Selection Logic ---
+        function selectFunction(type, event) {
+            // Animation for visual feedback
+            const btn = event.currentTarget;
+            btn.classList.add('scale-95');
+            setTimeout(() => btn.classList.remove('scale-95'), 100);
+
+            if(event.ctrlKey) {
+                // Execute immediately if CTRL is held (AHK connection)
+                console.log("Execute: " + type);
+                if(window.ahk) window.ahk['run_' + type](event); 
+            } else {
+                // Open Options Menu (Placeholder for next step)
+                console.log("Open Options for: " + type);
+                // alert("Opening options for " + type);
+                // Here we will create the sub-menu overlay later
+            }
+        }
+
+        // --- Keyboard Listener (Ctrl) ---
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Control') {
+                document.getElementById('ctrl-indicator').classList.remove('hidden');
+                document.body.classList.add('cursor-crosshair'); // Change cursor to precision
+            }
+        });
+        document.addEventListener('keyup', (e) => {
+            if (e.key === 'Control') {
+                document.getElementById('ctrl-indicator').classList.add('hidden');
+                document.body.classList.remove('cursor-crosshair');
+            }
+        });
+
+    </script>
 </body>
 </html>
